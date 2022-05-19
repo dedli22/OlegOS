@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\postController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,13 +18,8 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/news', function () {    
-    $name = 'Aigars';
-    return view('news', [
-        'name' => $name,
-    ]);
-    
-});
+Route::get('/news', [PostController::class, 'index']);
+
 
 
 Route::get('/welcome', function () {
