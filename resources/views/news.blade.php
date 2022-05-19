@@ -8,8 +8,8 @@
 <section class="centerContent">
         
             
-    Home lapas saturs
-    
+    news Lapa
+    Man liekas, ka tevi sauc {{$name}}
     
     
     </section>

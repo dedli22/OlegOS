@@ -27,12 +27,11 @@
 				  </form>   
         </div>
         <nav class="headerNavigation">
-            <ul>
+            <ul>                
                 <li><a href="#">Links</a></li>
                 <li><a href="#">Links</a></li>
-                <li><a href="#">Links</a></li>
-                <li><a href="#">Links</a></li>
-                
+                <li><a href="/">Home</a></li>
+                <li><a href="/news">News</a></li>                
             </ul>
         </nav>
       </div>
