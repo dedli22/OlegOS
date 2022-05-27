@@ -9,6 +9,8 @@
     <link rel='canonical' href='http://localhost/hosts/project/portal_v2/' />    
     <link rel="stylesheet" href="css/themes/puffy/theme.css">
     
+
+    
     <title>Page Title</title>
 </head>
 <body>
