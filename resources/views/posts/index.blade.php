@@ -17,7 +17,10 @@
                       
         <button class="read_more" onclick="window.location.href='{{ route('posts.show', ['post' => $post->id]) }}';">         
         Lasīt vairāk...
-        </button>  
+        </button>
+        <div style="float: right;">
+            Comments: {{ $post->comments()->count() }}
+        </div>  
     </div> 
     @endforeach
         

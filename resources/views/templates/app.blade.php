@@ -14,7 +14,7 @@
     <header>
       <div class="pageInfoBar">
         <div class="headerLogo">
-            <a href="#">
+            <a href="http://localhost/">
                 <img src="{{ asset('css/images/')}}/header/logo_small1_trans.png" alt="Logo" height="40px" width="171px"/>
             </a>
         </div>

@@ -20,24 +20,13 @@ class Post extends Model
         'authorName',
     ];
 
-//     protected static function newFactory(): PostFactory
-//     {
-//         return new PostFactory();
-//     }
+    protected static function newFactory(): PostFactory
+    {
+        return new PostFactory();
+    }
 
-//     public function comments(): MorphMany
-//     {
-//         return $this->morphMany(Comment::class, 'commentable');
-//     }
-// }
-
-protected static function newFactory(): PostFactory
-{
-    return new PostFactory();
-}
-
-public function comments(): MorphMany
-{
-    return $this->morphMany(Comment::class, 'commentable');
-}
+    public function comments(): MorphMany
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
 }

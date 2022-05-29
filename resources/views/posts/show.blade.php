@@ -12,7 +12,7 @@
     <br>
     {{ $post->body}}
 
-<br>
+    <br><br><br>
 
 <h2>Comments: {{ $post->comments()->count() }}</h2>
 

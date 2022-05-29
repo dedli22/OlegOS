@@ -13,10 +13,10 @@
     
     <title>Page Title</title>
 </head>
-<body class="font-sans antialiased text-gray-900 leading-normal tracking-wider bg-cover">
-<div class="max-w-4xl flex items-center h-auto lg:h-screen flex-wrap mx-auto my-32 lg:my-0">
-    <header>
-      <div class="pageInfoBar">
+<body class="max-w-7xl h-full mx-auto pt-2.5 bg-slate-400" >
+    <div class="container" >
+        <header>
+          <div class="">
         <div class="headerLogo">
             <a href="#">
                 <img src="css/themes/puffy/images/header/logo_small1_trans.png" alt="Logo" height="40px" width="171px"/>

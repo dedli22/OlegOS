@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PostCreateRequest;
 use App\Http\Requests\PostUpdateRequest;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Contracts\View\View;
 
@@ -39,7 +39,6 @@ class postController extends Controller
 
     public function show(Post $post): View
     {
-        //dd($id);
         return view('posts.show', [
             'post' => $post,
         ]);
@@ -55,21 +54,7 @@ class postController extends Controller
     public function update(PostUpdateRequest $request, Post $post)
     {
 
-        // $validatedData = $request->validate([
-        //     'title' => 'required|unique:posts,max:255',
-        //     'body' => 'required',
-        //     'image' => 'nullable',
-        //     'authorName' => 'nullable',
-        // ]);
-
-        // $validatedData = $request->validate([
-        //     // 'title' => 'required|unique:posts,max:255',
-        //     'title' => 'required',
-        //     'body' => 'required',
-        //     'image' => 'nullable',
-        //     'authorName' => 'nullable',
-        // ]);
-        $validatedData = $request->validated();   
+        $validatedData = $request->validated();
         $post->title = $validatedData['title'];
         $post->image = $validatedData['image'];
         $post->body = $validatedData['body'];

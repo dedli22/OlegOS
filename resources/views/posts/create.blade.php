@@ -8,13 +8,11 @@
 
     <h1>Create Post</h1>
  
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
+    @if ($errors->any())
+    <div class="error">        
             @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+                {{ $error }} <br>
+            @endforeach            
     </div>
 @endif
     <form action="{{ route('posts.create') }}" method="POST">

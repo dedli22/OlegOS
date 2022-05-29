@@ -7,9 +7,12 @@
         <button class="button" onclick="window.location.href='{{ route('posts.create') }}';">         
             Pievienot jaunu Postu
         </button> 
+        <div style="float: right;margin-right:30px;font-weight: bold;">
+        Kopā pievienoti {{ $posts->count()}} posti.
+        </div>        
         <br><br>
     </div>   
-    <table id="customers" >
+    <table id="Info" >
         <tr>
             <th>ID</th>
             <th>Virsraksts</th>
@@ -34,7 +37,7 @@
                     <a href="{{ route('posts.edit', ['post' => $post->id]) }}">                    
                         <img height="20px" height="20px" alt="edit" src="{{ asset('css/images') }}/icons/application_edit.png" >
                     </a>&nbsp;&nbsp;
-                    <a href="{{ route('posts.destroy', ['post' => $post->id]) }}">
+                    <a onclick="return confirm('Are you sure?')" href="{{ route('posts.destroy', ['post' => $post->id]) }}">
                         <img height="20px" height="20px" alt="delete" src="{{ asset('css/images') }}/icons/application_delete.png" >
                     </a>
                     
