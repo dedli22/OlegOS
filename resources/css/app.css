@@ -1,3 +1,10 @@
 @import 'tailwindcss/tailwind';
 @import 'tailwindcss/variants';
 @import 'tailwindcss/screens';
+
+
+/* 
+@tailwind base;
+@tailwind components;
+@tailwind utilities; 
+*/

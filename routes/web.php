@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\MainNavController;
+use App\Http\Controllers\PageConfigController;
 use App\Http\Controllers\postController;
 use App\Models\MainNav;
 use Illuminate\Support\Facades\Route;
@@ -43,10 +44,12 @@ Route::controller(postController::class)->group(function () {
 Route::controller(CommentController::class)->group(function () {
     Route::prefix('comments')->group(function () {
         Route::get('/', function () {
+            Route::post('/reply/store', 'replyStore')->name('reply.add');
             // $comment = Comment::find(1);
             // dd($comment->commentable);
         });
         Route::post('/store', 'store')->name('comments.store');
+        Route::post('/reply/store', 'replyStore')->name('reply.add');
     });
 });
 
@@ -71,10 +74,19 @@ Route::controller(MainNavController::class)->group(function () {
     });
 });
 
+// Config page 
+Route::controller(PageConfigController::class)->group(function () {
+    Route::prefix('admin/PageConfig')->group(function () {
+        Route::get('/', 'index')->name('PageConfig.index');
+        Route::get('/show', 'show')->name('PageConfig.show');
+        Route::Post('/show', 'update')->name('PageConfig.update');
+        Route::get('/offline', 'offline')->name('PageConfig.offline');
+    });
+});
 
 // Tests
 Route::get('/welcome', function () {
-    return view('welcome');
+    return view('welcome')->name('welcome');
 });
 
 
@@ -85,3 +97,16 @@ Route::get('/portal_v3', function () {
 Route::get('/taill', function () {
     return view('taill');
 });
+
+Route::get('/test', function () {
+    return view('test');
+});
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+
+
+require __DIR__ . '/auth.php';

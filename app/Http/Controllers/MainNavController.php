@@ -4,12 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\MainNavCreateRequest;
 use App\Http\Requests\MainNavUpdateRequest;
-use App\Http\Requests\StoreMainNavRequest;
-use App\Http\Requests\UpdateMainNavRequest;
 use App\Models\MainNav;
-use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Mail;
+
 
 class MainNavController extends Controller
 {

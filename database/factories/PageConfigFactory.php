@@ -17,7 +17,11 @@ class PageConfigFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'page_title' => 'Page Title',
+            'page_offline' => '0',
+            'page_offline_msg' => 'Page offline',
+            'page_version' => '1.5 Beta',
+            'posts_per_page' => '5',
         ];
     }
 }

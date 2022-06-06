@@ -4,16 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PostCreateRequest;
 use App\Http\Requests\PostUpdateRequest;
+use App\Models\PageConfig;
 // use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Contracts\View\View;
+use App\Http\Controllers\PageConfigController;
+
 
 class postController extends Controller
 {
-    public function index(): View
+
+    public function index()
     {
-        return view('posts.index', [
-            'posts' => Post::orderBy('id', 'desc')->paginate(3),
+        
+        $limit = PageConfig::find(1)->posts_per_page;       
+            
+        return view('posts.index', [            
+            'posts' => Post::orderBy('id', 'desc')->paginate($limit),
         ]);
     }
 
