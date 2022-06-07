@@ -4,6 +4,9 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\MainNavController;
 use App\Http\Controllers\PageConfigController;
 use App\Http\Controllers\postController;
+use App\Http\Middleware\CheckIsAdmin;
+use App\Http\Middleware\CheckIsModerator;
+use App\Http\Middleware\CheckIsMainAdmin;
 use App\Models\MainNav;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
@@ -22,20 +25,55 @@ use App\Models\Comment;
 |
 */
 
+
+// ALL USERS 
+
+
+
+// AUTH USERS
+
+
+// MODERATROS
+
+
+// ADMIN
+Route::middleware([CheckIsAdmin::class])->group(function () {
+    Route::prefix('admin')->group(function () {
+        Route::controller(postController::class)->group(function () {            
+            Route::prefix('admin/posts')->group(function () {
+                Route::get('/create', 'create')->name('posts.create');
+                Route::post('/create', 'store');
+                Route::get('/edit/{post}', 'edit')->name('posts.edit');
+                Route::post('/edit/{post}', 'update');
+                Route::get('/delete/{post}', 'destroy')->name('posts.destroy');
+                Route::get('/admin', 'admin')->name('posts.admin');
+            });
+        });
+
+    });
+});
+
+// MAIN ADMIN
+
+
+
+
+
+
 Route::get('/',  [MainNavController::class, 'index']);
 
 
 // Post Links 
 Route::controller(postController::class)->group(function () {
     Route::get('/', 'index')->name('posts.index');
+    Route::get('/show/{post}', 'show')->name('posts.show');
     Route::prefix('admin/posts')->group(function () {
-        Route::get('/create', 'create')->name('posts.create');
-        Route::post('/create', 'store');
-        Route::get('/show/{post}', 'show')->name('posts.show');
-        Route::get('/edit/{post}', 'edit')->name('posts.edit');
-        Route::post('/edit/{post}', 'update');
-        Route::get('/delete/{post}', 'destroy')->name('posts.destroy');
-        Route::get('/admin', 'admin')->name('posts.admin');
+        // Route::get('/create', 'create')->name('posts.create');
+        // Route::post('/create', 'store');        
+        // Route::get('/edit/{post}', 'edit')->name('posts.edit');
+        // Route::post('/edit/{post}', 'update');
+        // Route::get('/delete/{post}', 'destroy')->name('posts.destroy');
+        // Route::get('/admin', 'admin')->name('posts.admin');
     });
 });
 
@@ -59,7 +97,7 @@ Route::controller(CommentController::class)->group(function () {
 // });
 Route::get('/admin', function () {
     return view('admin/index');
-});
+})->middleware(['CheckIsAdmin']);
 
 // Main Navigation MainNav
 Route::controller(MainNavController::class)->group(function () {

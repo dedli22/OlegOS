@@ -60,11 +60,34 @@
                             <a class="block float-left w-20 text-gray-200 font-bold" href="#">Messages</a>
                         </li>
                         <li>
-                            <a class="block float-left w-20 text-gray-200 font-bold" href="#">Album</a></li>
+                            <a class="block float-left w-20 text-gray-200 font-bold" href="#">Album</a>
+                        </li>
                         <li>
-                            <a class="block float-left w-20 text-gray-200 font-bold" href="#">Friends</a></li>
+                            <a class="block float-left w-20 text-gray-200 font-bold" href="#">Friends</a>
+                        </li>
                         <li>
-                            <a class="block float-left w-20 text-gray-200 font-bold" href="#">About</a></li>
+                            <a class="block float-left w-20 text-gray-200 font-bold" href="#">About</a>
+                        </li>
+                        <li>
+                            <a class="block float-left w-20 text-gray-200 font-bold" href="http://localhost/login">LogIn</a>
+                        </li>
+                        @auth
+                        <li class="float-right">                            
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+
+                                <label class="text-white font-bold cursor-pointer mr-1">{{ __('Log Out') }}</label>    
+                                
+                            </form>                   
+                            
+                        </li>
+                            @if (Auth::user()->is_admin)
+                                <li>
+                                    <a class="block float-left w-20 text-gray-200 font-bold" href="http://localhost/admin">Admin</a>
+                                </li>
+                            @endif                        
+                        @endauth    
+
                     </ul>
                 </section>
                 @yield('userInfoBar')

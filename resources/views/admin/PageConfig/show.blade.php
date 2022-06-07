@@ -58,7 +58,7 @@
                         <font color="red">*</font><b> Posti vienā lapā:</b>
                     </div>
                     <div>
-                        <input class="w-2/4 border border-solid border-gray-400 rounded-md focus:border-sky-200 drop-shadow box-border outline-none" type="text" name="posts_per_page" value="{{ $PageConfig->news_per_page }}" size="" /><br /><br>
+                        <input class="w-2/4 border border-solid border-gray-400 rounded-md focus:border-sky-200 drop-shadow box-border outline-none" type="text" name="posts_per_page" value="{{ $PageConfig->posts_per_page }}" size="" /><br /><br>
                     </div>            
                 </span>              
                 <br><br><br>
