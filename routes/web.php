@@ -13,6 +13,8 @@ use App\Models\Post;
 use PhpParser\Node\Expr\FuncCall;;
 
 use App\Models\Comment;
+use GuzzleHttp\Middleware;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +64,28 @@ Route::middleware([CheckIsAdmin::class])->group(function () {
 
 
 
+Route::get('/', function() {
+    return redirect(app()->getLocale());
+});
+
+Route::get('/dashboard', function (){
+    return redirect(app()->getLocale());
+});
+
+
+Route::group([
+    'prefix' => '{locale}',
+    'where' => ['locale' => '[a-zA-Z]{2}'],
+    'middleware' => 'setLocale',
+    ], function () {
+    Route::get('/', function () {
+        return view('welcome');
+    });
+
+
+    Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 
 Route::get('/',  [MainNavController::class, 'index']);
@@ -151,4 +175,20 @@ Route::get('/dashboard', function () {
 
 
 
-require __DIR__ . '/auth.php';
+
+
+
+    require __DIR__ . '/auth.php';
+
+});
+
+
+
+// ->middleware('setLocale')
+
+
+
+
+
+
+
