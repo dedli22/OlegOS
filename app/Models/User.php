@@ -24,6 +24,15 @@ class User extends Authenticatable
         'is_admin',
         'is_moderator',
         'is_main_admin',
+        'firstName',
+        'nickname',
+        'lastName',
+        'profile_picture',
+        'gender',
+        'about',
+        'country',
+        'city',
+        'work',
     ];
 
     /**
