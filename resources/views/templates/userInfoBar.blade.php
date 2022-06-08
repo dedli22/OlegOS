@@ -1,16 +1,8 @@
-{{-- <aside class="w-1/5 mt-52 m-5 border-solid border-r border-sky-500 overflow-hidden float-left"> --}}
-
-{{-- <aside style="     width: 22%;
-float: left;
-margin-top: 70px;
-padding-top: 80px;
-margin: 5px;
-border-right: 1px solid #16a2f3;
-overflow: hidden;"> --}}
 <aside class="float-left w-3/12 border-r border-solid border-sky-500 m-5">
     <div class="text-sky-500 text-xl pb-5 capitalize">
         Hello, 
             <a class="text-sky-500 font-bold" href=''>
+                {{ Auth::user()->name }}
                 Aigars Šteinbergs
             </a>
     <br/>

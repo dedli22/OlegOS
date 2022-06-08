@@ -19,9 +19,7 @@ class MainNavController extends Controller
     {
 
         return view('admin.MainNav.index', [
-
             'MainNavs' => MainNav::all()->sortBy('order'),
-
         ]);
     }
 
@@ -41,7 +39,7 @@ class MainNavController extends Controller
         ]);
         $MainNav->save();
 
-        return redirect()->route('MainNav.index');
+        return redirect()->route('MainNav.index', app()->getLocale());
     }
 
     public function show()
@@ -49,14 +47,14 @@ class MainNavController extends Controller
         return view('admin.MainNav.show');
     }
 
-    public function edit(MainNav $MainNav): View
+    public function edit(string $locale, MainNav $MainNav): View
     {
         return view('admin.MainNav.edit', [
-            'MainNav' => $MainNav,
+            'MainNav' => $MainNav,            
         ]);
     }
 
-    public function update(MainNavUpdateRequest $request, MainNav $MainNav)
+    public function update(string $locale, MainNavUpdateRequest $request, MainNav $MainNav)
     {
         $validatedData = $request->validated();
         $MainNav->name = $validatedData['name'];
@@ -65,10 +63,10 @@ class MainNavController extends Controller
         $MainNav->order = $validatedData['order'];
         $MainNav->Save();
 
-        return redirect()->route('MainNav.index', ['MainNav' => $MainNav]);
+        return redirect()->route('MainNav.index', ['MainNav' => $MainNav, 'locale' => app()->getLocale()]);
     }
 
-    public function destroy(MainNav $MainNav)
+    public function destroy(string $locale, MainNav $MainNav)
     {
         $MainNav->delete();
 

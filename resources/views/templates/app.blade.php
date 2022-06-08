@@ -39,65 +39,74 @@
                         </nav>
                     </div>
                     <div class="bg-Black-opticaly-08 w-40 float-right rounded-bl-2xl ">
-                        <div class="float-right opacity-70">                        
-                            <a class="float-right" href=""><img width="34px" height="24px" style="margin: 5px;" src="{{ asset('css/images/')}}/header/russia.png" alt="Russian"/></a>
-                            <a class="float-right" href=""><img width="34px" height="24px" style="margin: 5px;" src="{{ asset('css/images/')}}/header/english.png" alt="English"/></a>
-                            <a class="float-right" href=""><img width="34px" height="24px" style="width: 34px;height: 34px padding-left:10px; margin: 5px;" src="{{ asset('css/images/')}}/header/latvia.png" alt="Latvian"/></a>
+                        <div class="float-right opacity-70">                                              
+                            {{-- <a class="float-right mr-2" href="{{ route(Route::currentRouteName(), ['locale' => 'ru', 'MainNav' => $MainNav->id, 'post' => $post->id]) }}">
+                                <img width="34px" height="24px" @if (app()->getLocale() === 'ru') style="width: 38px;height: 28p;" @endif   style="margin: 5px; opacity: 0.5;" src="{{ asset('css/images/')}}/header/russia.png" alt="Russian"/>
+                            </a>
+                            <a class="float-right" href="{{ route(Route::currentRouteName(), ['locale' => 'en', 'MainNav' => $MainNav->id, 'post' => $post->id]) }}">
+                                <img width="34px" height="24px" @if (app()->getLocale() === 'en') style="width: 38px;height: 28px" @endif style="margin: 5px; opacity: 0.5;" src="{{ asset('css/images/')}}/header/english.png" alt="English"/>
+                            </a>
+                            <a class="float-right" href="{{ route(Route::currentRouteName(), ['locale' => 'lv', 'MainNav' => $MainNav->id, 'post' => $post->id]) }}">
+                                <img width="44px" height="34px" @if (app()->getLocale() === 'lv') style="width: 38px;height: 28px" @endif style=" padding-left:10px; margin: 5px; opacity: 0.5;" src="{{ asset('css/images/')}}/header/latvia.png" alt="Latvian"/>
+                            </a> --}}
                         </div>
                     </div>        
                 </header>
-                <section class="mt-[-150px] ml-10">
-                    <div class="w-48 h-48 bg-slate-50 float-left rounded-full">
-                        <img class="rounded-full m-2 w-44 h-44" src="{{ asset('css/images/')}}/userPic.jpg" alt="userPicture" width="165" height="165" />
-                    </div>
-                </section>
-                <section class="float-left text-center h-10 mt-20 overflow-hidden bg-Black-opticaly-08 w-[81.8%] mb-20">
-                    <ul class="h-10 leading-6 p-2 capitalize">
-                        <li>
-                            <a class="block float-left w-20 text-gray-200 font-bold" href="#">Timeline</a>
-                        </li>
-                        <li>
-                            <a class="block float-left w-20 text-gray-200 font-bold" href="#">Messages</a>
-                        </li>
-                        <li>
-                            <a class="block float-left w-20 text-gray-200 font-bold" href="#">Album</a>
-                        </li>
-                        <li>
-                            <a class="block float-left w-20 text-gray-200 font-bold" href="#">Friends</a>
-                        </li>
-                        <li>
-                            <a class="block float-left w-20 text-gray-200 font-bold" href="#">About</a>
-                        </li>
-                        <li>
-                            <a class="block float-left w-20 text-gray-200 font-bold" href="http://localhost/login">LogIn</a>
-                        </li>
-                        @auth
-                        <li class="float-right">                            
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-
-                                <label class="text-white font-bold cursor-pointer mr-1">{{ __('Log Out') }}</label>    
-                                
-                            </form>                   
+                @auth
+                    <section class="mt-[-150px] ml-10">
+                        <div class="w-48 h-48 bg-slate-50 float-left rounded-full">
+                            <img class="rounded-full m-2 w-44 h-44" src="{{ asset('css/images/')}}/userPic.jpg" alt="userPicture" width="165" height="165" />                            
+                        </div>
+                    </section>
+                    <section class="float-left text-center h-10 mt-20 overflow-hidden bg-Black-opticaly-08 w-[81.8%] mb-20">
+                        <ul class="h-10 leading-6 p-2 capitalize">
+                            <li>
+                                <a class="block float-left w-32 text-gray-200 font-bold" href="#">@lang('app.Timeline')</a>
+                            </li>
+                            <li>
+                                <a class="block float-left w-20 text-gray-200 font-bold" href="#">@lang('app.Messages')</a>
+                            </li>
+                            <li>
+                                <a class="block float-left w-20 text-gray-200 font-bold" href="#">@lang('app.Album')</a>
+                            </li>
+                            <li>
+                                <a class="block float-left w-20 text-gray-200 font-bold" href="#">@lang('app.Friends')</a>
+                            </li>
+                            <li>
+                                <a class="block float-left w-20 text-gray-200 font-bold" href="#">@lang('app.About')</a>
+                            </li>
+                            {{-- <li>
+                                <a class="block float-left w-20 text-gray-200 font-bold" href="{{ route('login2', app()->getLocale()) }}">LogIn2</a>
+                            </li> --}}
                             
-                        </li>
-                            @if (Auth::user()->is_admin)
-                                <li>
-                                    <a class="block float-left w-20 text-gray-200 font-bold" href="http://localhost/admin">Admin</a>
-                                </li>
-                            @endif                        
-                        @endauth    
+                            @auth
+                            <li class="float-right">                            
+                                <form method="POST" action="{{ route('logout', app()->getLocale()) }}">
+                                    @csrf
+                                    
+                                    <button class="text-white font-bold mr-1" type="submit">@lang('app.Log Out')</button>   
+                                    
+                                </form>                   
+                                
+                            </li>
+                                @if (Auth::user()->is_admin)
+                                    <li>
+                                        <a class="block float-left w-28 text-red-500 font-bold" href="{{ route('admin.index', app()->getLocale()) }}">@lang('app.Admin')</a>
+                                    </li>
+                                @endif                        
+                            @endauth    
 
-                    </ul>
-                </section>
+                        </ul>
+                    </section>                               
                 @yield('userInfoBar')
+                @endauth 
                 @yield('admin')    
                 <section class="float-left w-[70%] ">        
                     @yield('content')        
                 </section>
                 <footer class="w-full bg-sky-500 h-44 float-left">
                     <div class='float-left ml-10 mt-5 text-white '>
-                        <b>Portal.lv</b> - Visas Tiesibas aizsargātas
+                        <b>Portal.lv</b> - @lang('app.Footer Copy')
                     </div>       
                     <div class='float-right mr-10 mt-5 text-white'>
                         © 
@@ -113,6 +122,6 @@
         </body>
         </html>   
     @else
-        <script>window.location = "{{ route('PageConfig.offline')}}";</script>
+        <script>window.location = "{{ route('PageConfig.offline', app()->getLocale())}}";</script>
     @endif
 @endforeach

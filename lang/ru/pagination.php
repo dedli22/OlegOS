@@ -13,11 +13,11 @@ return [
     |
     */
 
-    'previous' => '&laquo; Iepriekšējā',
-    'next' => 'Nakamā &raquo;',
-    'Showing' => 'Rāda',
-    'to' => 'no',
-    'of' => 'Kopā',
-    'results' => 'Rezultāti',
+    'previous' => '&laquo; Предыдущий',
+    'next' => 'Следующий &raquo;',
+    'Showing' => 'Показаны',
+    'to' => 'из',
+    'of' => 'от', 
+    'results' => 'результаты',
 
 ];

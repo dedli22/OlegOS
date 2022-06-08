@@ -3,10 +3,10 @@
 @section('admin')
 <div id="acpContainer" class="w-full m-5">
     <br><br>
-    <div class="pageTitle text-sky-500 text-xl pl-3 font-bold text-left capitalize">Admin panel »</div>
+    <div class="pageTitle text-sky-500 text-xl pl-3 font-bold text-left capitalize">@lang('admin.Title') »</div>
     <hr style="width: 75%; float: left; margin: 5px; height: 2px;" color="#019ad2">
     <br>
-    <a href="{{ route('PageConfig.show') }}">   
+    <a href="{{ route('PageConfig.show', app()->getLocale()) }}">   
         <div class="w-52 border-2 border-solid border-sky-500 float-left rounded-md text-center m-2">
             <div class="w-full h-full ">            
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-40 w-40 mx-auto text-sky-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -14,11 +14,11 @@
                 </svg>
             </div>
             <div class="text-sky-500 font-bold text-center mb-5">
-                General Settings
+                @lang('admin.category.General Settings')
             </div>
         </div>    
     </a>
-    <a href="{{ route('MainNav.index') }}">    
+    <a href="{{ route('MainNav.index', app()->getLocale()) }}">    
         <div class="w-52 border-2 border-solid border-sky-500 float-left rounded-md text-center m-2">
             <div class="w-full h-full ">            
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-40 w-40 mx-auto text-sky-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -26,11 +26,11 @@
                 </svg>
             </div>
             <div class="text-sky-500 font-bold text-center mb-5">
-                Main Navigation
+                @lang('admin.category.Main Navigation')
             </div>
         </div>    
     </a>
-    <a href="{{ route('posts.admin') }}">
+    <a href="{{ route('posts.admin', app()->getLocale()) }}">
         <div class="w-52 border-2 border-solid border-sky-500 float-left rounded-md text-center m-2">
             <div class="w-full h-full ">             
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-40 w-40 mx-auto text-sky-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -38,7 +38,7 @@
                 </svg>
             </div>
             <div class="text-sky-500 font-bold text-center mb-5">
-                Posts
+                @lang('admin.category.News')
             </div>
         </div>
     </a>
@@ -50,7 +50,7 @@
                 </svg>
             </div>
             <div class="text-sky-500 font-bold text-center mb-5">
-                User Navigation
+                @lang('admin.category.User Navigation')
             </div>
         </div>
     </div>
@@ -62,7 +62,7 @@
                 </svg>
             </div>
             <div class="text-sky-500 font-bold text-center mb-5">
-                Messages
+                @lang('admin.category.Messages')
             </div>
         </div>
     </div>
@@ -74,7 +74,7 @@
                 </svg>
             </div>
             <div class="text-sky-500 font-bold text-center mb-5">
-                User's
+                @lang('admin.category.Users')
             </div>
         </div>
     </div>
@@ -86,7 +86,7 @@
                 </svg>                         
             </div>
             <div class="text-sky-500 font-bold text-center mb-5">
-                Statistic
+                @lang('admin.category.Statistic')
             </div>
         </div>
     </div>

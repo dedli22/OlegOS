@@ -7,13 +7,15 @@
         </div>
         <div>
             <a class="text-gray-600 font-bold capitalize" href="" >{{ $comment->authorName }}</a> 
-            <span class="text-gray-500 pl-5">Ievietots: {{ $comment->created_at->diffForHumans(); }}</span>                           
+            <span class="text-gray-500 pl-5">@lang('comments.Created At') {{ $comment->created_at->diffForHumans(); }}</span>                           
         </div>
         <div>
             {{ $comment->body }}
         </div>
     </div>     
 @endforeach
+
+
 
 {{-- Comment SUB/SUB Replay Form --}}
         {{-- @if ($errors->any())

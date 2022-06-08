@@ -8,6 +8,7 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
 use App\Models\MainNav;
 use App\Models\PageConfig;
+use App\Models\Post;
 
 class AppServiceProvider extends ServiceProvider
 {

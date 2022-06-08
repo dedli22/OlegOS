@@ -46,7 +46,7 @@ class PageConfigController extends Controller
         $PageConfig->save();      
         
 
-        return redirect()->route('PageConfig.show');
+        return redirect()->route('PageConfig.show', app()->getLocale());
     }
 
     public function offline(PageConfig $PageConfig)

@@ -27,50 +27,10 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 |
 */
 
-
-
-
-
-
-// ALL USERS 
-
-
-
-// AUTH USERS
-
-
-// MODERATROS
-
-
-// ADMIN
-Route::middleware([CheckIsAdmin::class])->group(function () {
-    Route::prefix('admin')->group(function () {
-        Route::controller(postController::class)->group(function () {            
-            Route::prefix('admin/posts')->group(function () {
-                Route::get('/create', 'create')->name('posts.create');
-                Route::post('/create', 'store');
-                Route::get('/edit/{post}', 'edit')->name('posts.edit');
-                Route::post('/edit/{post}', 'update');
-                Route::get('/delete/{post}', 'destroy')->name('posts.destroy');
-                Route::get('/admin', 'admin')->name('posts.admin');
-            });
-        });
-
-    });
-});
-
-// MAIN ADMIN
-
-
-
-
 Route::get('/', function() {
     return redirect(app()->getLocale());
 });
 
-Route::get('/dashboard', function (){
-    return redirect(app()->getLocale());
-});
 
 
 Route::group([
@@ -78,107 +38,130 @@ Route::group([
     'where' => ['locale' => '[a-zA-Z]{2}'],
     'middleware' => 'setLocale',
     ], function () {
+    
     Route::get('/', function () {
         return view('welcome');
     });
 
-
     Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+        return view('dashboard');
+    })->middleware(['auth'])->name('dashboard');
 
 
-Route::get('/',  [MainNavController::class, 'index']);
 
+    // Admin page 
+        Route::get('/admin', function () {
+        return view('admin/index');
+    })->middleware(['CheckIsAdmin'])->name('admin.index');
 
-// Post Links 
-Route::controller(postController::class)->group(function () {
-    Route::get('/', 'index')->name('posts.index');
-    Route::get('/show/{post}', 'show')->name('posts.show');
-    Route::prefix('admin/posts')->group(function () {
-        // Route::get('/create', 'create')->name('posts.create');
-        // Route::post('/create', 'store');        
-        // Route::get('/edit/{post}', 'edit')->name('posts.edit');
-        // Route::post('/edit/{post}', 'update');
-        // Route::get('/delete/{post}', 'destroy')->name('posts.destroy');
-        // Route::get('/admin', 'admin')->name('posts.admin');
-    });
-});
+    // ALL USERS 
 
+    Route::get('/login2', function () {
+        return view('login');
+    })->name('login2');
+    // AUTH USERS
 
-// Comments 
-Route::controller(CommentController::class)->group(function () {
-    Route::prefix('comments')->group(function () {
-        Route::get('/', function () {
-            Route::post('/reply/store', 'replyStore')->name('reply.add');
-            // $comment = Comment::find(1);
-            // dd($comment->commentable);
+    // MODERATROS
+
+    // ADMIN
+    Route::middleware([CheckIsAdmin::class])->group(function () {
+        Route::prefix('admin')->group(function () {
+            Route::controller(postController::class)->group(function () {                       
+                    Route::get('/create', 'create')->name('posts.create');
+                    Route::post('/create', 'store');
+                    Route::get('/edit/{post}', 'edit')->name('posts.edit');
+                    Route::post('/edit/{post}', 'update');
+                    Route::get('/delete/{post}', 'destroy')->name('posts.destroy');
+                    Route::get('/admin', 'admin')->name('posts.admin');           
+            });
+
         });
-        Route::post('/store', 'store')->name('comments.store');
-        Route::post('/reply/store', 'replyStore')->name('reply.add');
     });
-});
 
-// Admin page 
-// Route::prefix('admin')->group(function () {
-//     Route::get('/index', '');
-// });
-Route::get('/admin', function () {
-    return view('admin/index');
-})->middleware(['CheckIsAdmin']);
+    // MAIN ADMIN
 
-// Main Navigation MainNav
-Route::controller(MainNavController::class)->group(function () {
-    Route::prefix('admin/mainNav')->group(function () {
-        Route::get('/', 'index')->name('MainNav.index');
-        Route::get('/create', 'create')->name('MainNav.create');
-        Route::Post('/create', 'store');
-        Route::get('/show/{MainNav}', 'show')->name('MainNav.show');
-        Route::get('/edit/{MainNav}', 'edit')->name('MainNav.edit');
-        Route::Post('/edit/{MainNav}', 'update');
-        Route::get('/delete/{MainNav}', 'destroy')->name('MainNav.destroy');
+    Route::get('/',  [MainNavController::class, 'index']);
+
+
+    // Post Links 
+    Route::controller(postController::class)->group(function () {
+        Route::get('/', 'index')->name('posts.index');
+        Route::get('/show/{post}', 'show')->name('posts.show');
+        Route::prefix('admin/posts')->group(function () {
+            // Route::get('/create', 'create')->name('posts.create');
+            // Route::post('/create', 'store');        
+            // Route::get('/edit/{post}', 'edit')->name('posts.edit');
+            // Route::post('/edit/{post}', 'update');
+            // Route::get('/delete/{post}', 'destroy')->name('posts.destroy');
+            // Route::get('/admin', 'admin')->name('posts.admin');
+        });
     });
-});
 
-// Config page 
-Route::controller(PageConfigController::class)->group(function () {
-    Route::prefix('admin/PageConfig')->group(function () {
-        Route::get('/', 'index')->name('PageConfig.index');
-        Route::get('/show', 'show')->name('PageConfig.show');
-        Route::Post('/show', 'update')->name('PageConfig.update');
-        Route::get('/offline', 'offline')->name('PageConfig.offline');
+
+    // Comments 
+    Route::controller(CommentController::class)->group(function () {
+        Route::prefix('comments')->group(function () {
+            Route::get('/', function () {
+                Route::post('/reply/store', 'replyStore')->name('reply.add');
+                // $comment = Comment::find(1);
+                // dd($comment->commentable);
+            });
+            Route::post('/store', 'store')->name('comments.store');
+            Route::post('/reply/store', 'replyStore')->name('reply.add');
+        });
     });
-});
 
-// Tests
-Route::get('/welcome', function () {
-    return view('welcome')->name('welcome');
-});
+    // Admin page 
+    // Route::prefix('admin')->group(function () {
+    //     Route::get('/index', '');
+    // });
+    // Route::get('/admin', function () {
+    //     return view('admin/index');
+    // })->middleware(['CheckIsAdmin']);
+
+    // Main Navigation MainNav
+    Route::controller(MainNavController::class)->group(function () {
+        Route::prefix('admin/mainNav')->group(function () {
+            Route::get('/', 'index')->name('MainNav.index');
+            Route::get('/create', 'create')->name('MainNav.create');
+            Route::Post('/create', 'store');
+            Route::get('/show/{MainNav}', 'show')->name('MainNav.show');
+            Route::get('/edit/{MainNav}', 'edit')->name('MainNav.edit');
+            Route::Post('/edit/{MainNav}', 'update');
+            Route::get('/delete/{MainNav}', 'destroy')->name('MainNav.destroy');
+        });
+    });
+
+    // Config page 
+    Route::controller(PageConfigController::class)->group(function () {
+        Route::prefix('admin/PageConfig')->group(function () {
+            Route::get('/', 'index')->name('PageConfig.index');
+            Route::get('/show', 'show')->name('PageConfig.show');
+            Route::Post('/show', 'update')->name('PageConfig.update');
+            Route::get('/offline', 'offline')->name('PageConfig.offline');
+        });
+    });
+
+    // Tests
+    Route::get('/welcome', function () {
+        return view('welcome')->name('welcome');
+    });
 
 
-Route::get('/portal_v3', function () {
-    return view('portal_v3');
-});
+    Route::get('/portal_v3', function () {
+        return view('portal_v3');
+    });
 
-Route::get('/taill', function () {
-    return view('taill');
-});
+    Route::get('/taill', function () {
+        return view('taill');
+    });
 
-Route::get('/test', function () {
-    return view('test');
-});
-
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-
-
-
-
+    Route::get('/test', function () {
+        return view('test');
+    });
 
     require __DIR__ . '/auth.php';
+
 
 });
 

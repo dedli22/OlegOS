@@ -29,7 +29,7 @@ class postController extends Controller
         return view('posts.create');
     }
 
-    public function store(PostCreateRequest $request)
+    public function store(string $locale, PostCreateRequest $request)
     {
 
         $validatedData = $request->validated();
@@ -41,24 +41,24 @@ class postController extends Controller
         ]);
         $post->save();
 
-        return redirect()->route('posts.show', ['post' => $post]);
+        return redirect()->route('posts.show', ['post' => $post, 'locale' => app()->getLocale()]);
     }
 
-    public function show(Post $post): View
+    public function show(string $locale, Post $post): View
     {
         return view('posts.show', [
             'post' => $post,
         ]);
     }
 
-    public function edit(Post $post): View
+    public function edit(string $locale, Post $post): View
     {
         return view('posts.edit', [
             'post' => $post,
         ]);
     }
 
-    public function update(PostUpdateRequest $request, Post $post)
+    public function update(string $locale, PostUpdateRequest $request, Post $post)
     {
 
         $validatedData = $request->validated();
@@ -67,15 +67,17 @@ class postController extends Controller
         $post->body = $validatedData['body'];
         $post->save();
 
-        return redirect()->route('posts.show', ['post' => $post]);
+        // return redirect()->route('posts.show', ['post' => $post, 'locale' => app()->getLocale()]);
+        return redirect()->route('posts.admin', app()->getLocale());
+        // return redirect()->route('MainNav.index', app()->getLocale());
     }
 
-    public function destroy(Post $post)
+    public function destroy(string $locale, Post $post)
     {
         $post->delete();
 
-        return redirect()->route('posts.admin');
-    }
+        return back();
+    }  
 
     public function admin()
     {
