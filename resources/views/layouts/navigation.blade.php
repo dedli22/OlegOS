@@ -12,10 +12,44 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard', app()->getLocale())" :active="request()->routeIs('dashboard', app()->getLocale())">
+                    
+                    
+                    @props(['active'])
+                    @php
+                    $classes = ($active ?? false)
+                                ? 'inline-flex items-center px-1 pt-1 border-b-2 border-indigo-400 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out'
+                                : 'inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out';
+                    @endphp
+                    <a {{ $attributes->merge(['class' => $classes]) }}>
+                        {{ __('Dashboard') }}
+                    </a>
+
+                    
+                    <a href="{{route('dashboard', app()->getLocale())}}" {{ $attributes->merge(['class' => $classes]) }} active="{{request()->routeIs('dashboard', app()->getLocale())}}">
+                        {{ __('Dashboard') }}
+                    </a>
+                
+                
+                </div>          
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('dashboard2', app()->getLocale())" :active="request()->routeIs('dashboard2', app()->getLocale())">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+
+                <a href="{{ route('dashboard', app()->getLocale()) }}" 
+                    class="@if(request()->routeIs('dashboard', app()->getLocale())) active @else '' @endif" >
+                    Posts
+                </a>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <a :href="route('dashboard2', app()->getLocale())" :active="request()->routeIs('dashboard2', app()->getLocale())">
+                        {{ __('Dashboard') }}
+                    </a>
+                </div>
+
+
             </div>
 
             <!-- Settings Dropdown -->

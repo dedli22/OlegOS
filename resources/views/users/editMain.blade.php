@@ -10,7 +10,7 @@
 
         
 
-        <a class="block float-left w-auto border-l border-r border-t border-solid border-sky-500 ml-5 pl-3 text-center rounded-t-lg text-sky-500 font-bold h-8 pt-1 pr-3 active:h-[42.5px] active:bg-white active:mt-[-10px] hover:h-[42.5px] hover:bg-white hover:mt-[-10px]" href="{{ route('users.UsersEditMainInfo', [Auth::user()->id, 'locale' => app()->getLocale()]) }}">
+        <a class="active block float-left w-auto border-l border-r border-t border-solid border-sky-500 ml-5 pl-3 text-center rounded-t-lg text-sky-500 font-bold pt-1 pr-3 h-[42.5px] bg-white mt-[-10px] hover:h-[42.5px] hover:bg-white hover:mt-[-10px]" href="{{ route('users.UsersEditMainInfo', [Auth::user()->id, 'locale' => app()->getLocale()]) }}">
             Main info
         </a>
     </li>

@@ -14,7 +14,7 @@
                 </svg>
             </div>
             <div class="text-sky-500 font-bold text-center mb-5">
-                @lang('admin.category.General Settings')
+                @lang('admin.category.General Settings')<br><br>
             </div>
         </div>    
     </a>
@@ -26,7 +26,7 @@
                 </svg>
             </div>
             <div class="text-sky-500 font-bold text-center mb-5">
-                @lang('admin.category.Main Navigation')
+                @lang('admin.category.Main Navigation')<br><br>
             </div>
         </div>    
     </a>
@@ -38,7 +38,7 @@
                 </svg>
             </div>
             <div class="text-sky-500 font-bold text-center mb-5">
-                @lang('admin.category.News')
+                @lang('admin.category.News')<br><br>
             </div>
         </div>
     </a>
@@ -62,7 +62,7 @@
                 </svg>
             </div>
             <div class="text-sky-500 font-bold text-center mb-5">
-                @lang('admin.category.Messages')
+                @lang('admin.category.Messages')<br><br>
             </div>
         </div>
     </div>
@@ -74,7 +74,7 @@
                 </svg>
             </div>
             <div class="text-sky-500 font-bold text-center mb-5">
-                @lang('admin.category.Users')
+                @lang('admin.category.Users')<br><br>
             </div>
         </div>
     </div>
@@ -86,7 +86,7 @@
                 </svg>                         
             </div>
             <div class="text-sky-500 font-bold text-center mb-5">
-                @lang('admin.category.Statistic')
+                @lang('admin.category.Statistic')<br><br>
             </div>
         </div>
     </div>

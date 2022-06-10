@@ -57,7 +57,8 @@
                 @yield('userInfoBar')
                 @endauth 
                 
-                @yield('admin')    
+                @yield('admin')
+                @yield('profile')    
                 <section class="float-left w-[70%] ">        
                     @yield('content')        
                 </section>

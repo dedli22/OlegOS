@@ -1,4 +1,4 @@
-@auth    
+@auth
     <section class="mt-[-150px] ml-10">
         <div class="w-48 h-48 bg-slate-50 float-left rounded-full">
             <img class="rounded-full m-2 w-44 h-44" src="{{ Auth::user()->profile_picture }}" alt="Profile Picture" width="165" height="165" />                            
@@ -6,6 +6,9 @@
     </section>
     <section class="float-left text-center h-10 mt-20 overflow-hidden bg-Black-opticaly-08 w-[81.8%] mb-20">
         <ul class="h-10 leading-6 p-2 capitalize">
+            <li>
+                <a class="block float-left w-20 text-gray-200 font-bold" href="http://localhost/en/user/1/edit">Profile</a>
+            </li>
             <li>
                 <a class="block float-left w-32 text-gray-200 font-bold" href="#">@lang('app.Timeline')</a>
             </li>
@@ -74,7 +77,7 @@
                 <li class="h-8 block pl-5">
                     <a class="block text-sky-600 hover:text-sky-900 hover:pl-3" href="#">» Edit profile</a>
                 </li>
-            </ul>
+            </ul>          
         </div>
     </aside>
 @endauth
