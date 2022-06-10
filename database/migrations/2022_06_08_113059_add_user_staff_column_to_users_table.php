@@ -14,15 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('firstName');
-            $table->string('lastName');
-            $table->string('nickname');
-            $table->string('profile_picture')->default('http://localhost/images/users/no_profile_picture.png');
-            $table->string('gender');
-            $table->string('about');
-            $table->string('country');
-            $table->string('city');
-            $table->string('work');
+            $table->string('firstName')->nullable();
+            $table->string('lastName')->nullable();
+            $table->string('nickname')->nullable();
+            $table->string('profile_picture')->default('http://localhost/images/users/no_profile_picture.png')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('about')->nullable();
+            $table->string('country')->nullable();
+            $table->string('city')->nullable();
+            $table->string('work')->nullable();
 
         });
     }
@@ -35,7 +35,15 @@ return new class extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->dropColumn('firstName');
+            $table->dropColumn('lastName');
+            $table->dropColumn('nickname');
+            $table->dropColumn('profile_picture');
+            $table->dropColumn('gender');
+            $table->dropColumn('about');
+            $table->dropColumn('country');
+            $table->dropColumn('city');
+            $table->dropColumn('work');
         });
     }
 };

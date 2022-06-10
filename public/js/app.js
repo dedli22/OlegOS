@@ -19413,12 +19413,25 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
 /*!*******************************!*\
   !*** ./resources/css/app.css ***!
   \*******************************/
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> Users-Interface
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
+<<<<<<< HEAD
 
+=======
+
+=======
+/***/ (() => {
+
+throw new Error("Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):\nModuleBuildError: Module build failed (from ./node_modules/postcss-loader/dist/cjs.js):\nTypeError: Cannot read properties of undefined (reading 'config')\n    at getTailwindConfig (/var/www/html/node_modules/tailwindcss/lib/lib/setupTrackingContext.js:132:62)\n    at /var/www/html/node_modules/tailwindcss/lib/lib/setupTrackingContext.js:21:92\n    at /var/www/html/node_modules/tailwindcss/lib/processTailwindFeatures.js:38:11\n    at plugins (/var/www/html/node_modules/tailwindcss/lib/index.js:33:58)\n    at LazyResult.runOnRoot (/var/www/html/node_modules/postcss/lib/lazy-result.js:339:16)\n    at LazyResult.runAsync (/var/www/html/node_modules/postcss/lib/lazy-result.js:393:26)\n    at LazyResult.async (/var/www/html/node_modules/postcss/lib/lazy-result.js:221:30)\n    at LazyResult.then (/var/www/html/node_modules/postcss/lib/lazy-result.js:206:17)\n    at processResult (/var/www/html/node_modules/webpack/lib/NormalModule.js:758:19)\n    at /var/www/html/node_modules/webpack/lib/NormalModule.js:860:5\n    at /var/www/html/node_modules/loader-runner/lib/LoaderRunner.js:400:11\n    at /var/www/html/node_modules/loader-runner/lib/LoaderRunner.js:252:18\n    at context.callback (/var/www/html/node_modules/loader-runner/lib/LoaderRunner.js:124:13)\n    at Object.loader (/var/www/html/node_modules/postcss-loader/dist/index.js:142:7)");
+>>>>>>> Main
+>>>>>>> Users-Interface
 
 /***/ }),
 
@@ -19645,6 +19658,10 @@ process.umask = function() { return 0; };
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> Users-Interface
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = __webpack_modules__;
 /******/ 	
@@ -19681,6 +19698,24 @@ process.umask = function() { return 0; };
 /******/ 		};
 /******/ 	})();
 /******/ 	
+<<<<<<< HEAD
+=======
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+=======
+/************************************************************************/
+>>>>>>> Main
+>>>>>>> Users-Interface
 /******/ 	/* webpack/runtime/global */
 /******/ 	(() => {
 /******/ 		__webpack_require__.g = (function() {
@@ -19693,6 +19728,10 @@ process.umask = function() { return 0; };
 /******/ 		})();
 /******/ 	})();
 /******/ 	
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> Users-Interface
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
@@ -19709,6 +19748,11 @@ process.umask = function() { return 0; };
 /******/ 		};
 /******/ 	})();
 /******/ 	
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> Main
+>>>>>>> Users-Interface
 /******/ 	/* webpack/runtime/node module decorator */
 /******/ 	(() => {
 /******/ 		__webpack_require__.nmd = (module) => {
@@ -19718,6 +19762,10 @@ process.umask = function() { return 0; };
 /******/ 		};
 /******/ 	})();
 /******/ 	
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> Users-Interface
 /******/ 	/* webpack/runtime/jsonp chunk loading */
 /******/ 	(() => {
 /******/ 		// no baseURI
@@ -19772,14 +19820,21 @@ process.umask = function() { return 0; };
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
 /******/ 	})();
 /******/ 	
+
 /************************************************************************/
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
+
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
 /******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/app.js")))
 /******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/css/app.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
+
+/******/ 	__webpack_require__("./resources/js/app.js");
+/******/ 	// This entry module doesn't tell about it's top-level declarations so it can't be inlined
+/******/ 	var __webpack_exports__ = __webpack_require__("./resources/css/app.css");
+
 /******/ 	
 /******/ })()
 ;

@@ -56,6 +56,7 @@ class RegisteredUserController extends Controller
 
     public function redirectTo()
     {
-        return app()->getLocale() . '/dashbord';
+        // return app()->getLocale() . '/dashbord';
+        return app()->getLocale() . '/';
     }
 }

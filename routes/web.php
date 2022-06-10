@@ -49,6 +49,10 @@ Route::group([
         return view('dashboard');
     })->middleware(['auth'])->name('dashboard');
 
+    Route::get('/dashboard2', function () {
+        return view('dashboard');
+    })->middleware(['auth'])->name('dashboard2');
+
 
 
     // Admin page 
@@ -64,9 +68,16 @@ Route::group([
 
         //User Profile
         Route::middleware(['auth'])->group(function () {
-            Route::prefix('user')->group(function () {
+            Route::prefix('/user')->group(function () {
                 Route::controller(UserConstroller::class)->group(function () {
                     Route::get('/{user}', 'show')->name('user.show');
+                    Route::get('/{user}/profile/timeline', 'profileTimeline')->name('user.profile.timeline');
+                    Route::get('/{user}/profile/Info', 'profileBaisicInfo')->name('user.profile.basicInfo');
+                    Route::get('/{user}/profile/about', 'ProfileAbout')->name('user.profile.about');
+                    Route::get('/{user}/profile/contacts', 'ProfileContacts')->name('user.profile.contacts');
+                    Route::get('/{user}/profile/comments', 'ProfileComments')->name('user.profile.comments');
+
+
                     route::get('/{user}/edit', 'editMainInfo')->name('users.UsersEditMainInfo');
                     route::get('/{user}/edit/Picture', 'editProfilePicture')->name('users.editProfilePicture');
                     route::post('/{user}/edit/Picture', 'updateProfilePicture')->name('users.updateProfilePicture');
