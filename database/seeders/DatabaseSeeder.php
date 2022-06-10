@@ -2,7 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\MainNav;
+use App\Models\Post;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Schema\PostgresSchemaState;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,5 +23,11 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        $this->call([
+            PostSeeder::class,
+            MainNavSeeder::class,
+            PageConfigSeeder::class,
+        ]);
     }
 }

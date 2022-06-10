@@ -2,6 +2,10 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\CheckIsAdmin;
+use App\Http\Middleware\CheckIsMainAdmin;
+use App\Http\Middleware\CheckIsModerator;
+use App\Http\Middleware\IsAdmin;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -63,5 +67,11 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+
+        'IsAdmin' => IsAdmin::class,
+        'CheckIsAdmin' => CheckIsAdmin::class,
+        'CheckIsModerator' => CheckIsModerator::class,
+        'CheckIsMainAdmin' => CheckIsMainAdmin::class,
+        'setLocale' => \App\Http\Middleware\SetLocale::class,
     ];
 }
