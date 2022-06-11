@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\FriendController;
 use App\Http\Controllers\MainNavController;
 use App\Http\Controllers\PageConfigController;
 use App\Http\Controllers\postController;
@@ -8,15 +9,10 @@ use App\Http\Controllers\UserConstroller;
 use App\Http\Middleware\CheckIsAdmin;
 use App\Http\Middleware\CheckIsModerator;
 use App\Http\Middleware\CheckIsMainAdmin;
-use App\Models\MainNav;
 use Illuminate\Support\Facades\Route;
-use App\Models\Post;
-use PhpParser\Node\Expr\FuncCall;;
 
-use App\Models\Comment;
-use App\Models\User;
-use GuzzleHttp\Middleware;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -70,7 +66,7 @@ Route::group([
         Route::middleware(['auth'])->group(function () {
             Route::prefix('/user')->group(function () {
                 Route::controller(UserConstroller::class)->group(function () {
-                    Route::get('/{user}', 'show')->name('user.show');
+                    Route::get('/{user}', 'index')->name('user.index');
                     Route::get('/{user}/profile/timeline', 'profileTimeline')->name('user.profile.timeline');
                     Route::get('/{user}/profile/Info', 'profileBaisicInfo')->name('user.profile.basicInfo');
                     Route::get('/{user}/profile/about', 'ProfileAbout')->name('user.profile.about');
@@ -82,6 +78,13 @@ Route::group([
                     route::get('/{user}/edit/Picture', 'editProfilePicture')->name('users.editProfilePicture');
                     route::post('/{user}/edit/Picture', 'updateProfilePicture')->name('users.updateProfilePicture');
                     route::get('/{user}/edit/password', 'changePassword')->name('users.changePassword');
+                });
+            });
+
+            // Friend list
+            Route::prefix('friends')->group(function() {
+                Route::controller(FriendController::class)->group(function () {
+                    Route::get('/friend', 'showAllUsers')->name('friends.show');
                 });
             });
         });

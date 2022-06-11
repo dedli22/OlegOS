@@ -11,6 +11,15 @@ use Illuminate\Support\Facades\Auth;
 class UserConstroller extends Controller
 {
 
+    public function index(string $locale, User $user): View
+    {
+        
+        return view('users.index', [
+            'user' => $user,
+            'users' => User::get(),
+        ]);    
+    }
+
 
     public function show(string $locale, User $user): View
     {
