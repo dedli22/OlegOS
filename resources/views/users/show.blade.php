@@ -13,7 +13,7 @@
         <div class="float-left w-[65%] m-10">
             @include('users.show.components.navigation') 
             <br><br><br>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit eligendi accusamus ex molestiae sequi quidem illo eius, quaerat quam vel iusto repellat tenetur dicta. Possimus, accusamus. Neque sit nemo consequatur.        
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit eligendi accusamus ex molestiae sequi quidem illo eius, quaerat quam vel iusto repellat tenetur dicta. Possimus, accusamus. Neque sit nemo consequatur.
             
             
             

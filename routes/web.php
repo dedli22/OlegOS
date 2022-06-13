@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\CategoryContriller;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FriendController;
 use App\Http\Controllers\MainNavController;
 use App\Http\Controllers\PageConfigController;
 use App\Http\Controllers\postController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserConstroller;
 use App\Http\Middleware\CheckIsAdmin;
 use App\Http\Middleware\CheckIsModerator;
@@ -65,20 +68,23 @@ Route::group([
         //User Profile
         Route::middleware(['auth'])->group(function () {
             Route::prefix('/user')->group(function () {
-                Route::controller(UserConstroller::class)->group(function () {
-                    Route::get('/{user}', 'index')->name('user.index');
-                    Route::get('/{user}/profile/timeline', 'profileTimeline')->name('user.profile.timeline');
-                    Route::get('/{user}/profile/Info', 'profileBaisicInfo')->name('user.profile.basicInfo');
-                    Route::get('/{user}/profile/about', 'ProfileAbout')->name('user.profile.about');
-                    Route::get('/{user}/profile/contacts', 'ProfileContacts')->name('user.profile.contacts');
-                    Route::get('/{user}/profile/comments', 'ProfileComments')->name('user.profile.comments');
-
-
+                Route::controller(UserConstroller::class)->group(function () {         
                     route::get('/{user}/edit', 'editMainInfo')->name('users.UsersEditMainInfo');
                     route::get('/{user}/edit/Picture', 'editProfilePicture')->name('users.editProfilePicture');
                     route::post('/{user}/edit/Picture', 'updateProfilePicture')->name('users.updateProfilePicture');
                     route::get('/{user}/edit/password', 'changePassword')->name('users.changePassword');
                 });
+            });
+
+            // Profile page
+            Route::controller(ProfileController::class)->group(function () {
+                Route::get('user/{user}', 'profileTimeline')->name('user.profile.timeline');
+                    Route::prefix('/{user}/profile/')->group(function() {                    
+                        Route::get('Info', 'profileBaisicInfo')->name('user.profile.basicInfo');
+                        Route::get('about', 'ProfileAbout')->name('user.profile.about');
+                        Route::get('contacts', 'ProfileContacts')->name('user.profile.contacts');
+                        Route::get('comments', 'ProfileComments')->name('user.profile.comments');
+                    });
             });
 
             // Friend list
@@ -87,6 +93,8 @@ Route::group([
                     Route::get('/friend', 'showAllUsers')->name('friends.show');
                 });
             });
+
+
         });
 
 
@@ -99,15 +107,25 @@ Route::group([
     // ADMIN
     Route::middleware([CheckIsAdmin::class])->group(function () {
         Route::prefix('admin')->group(function () {
+            //Posts = News
             Route::controller(postController::class)->group(function () {                       
-                    Route::get('/create', 'create')->name('posts.create');
-                    Route::post('/create', 'store');
-                    Route::get('/edit/{post}', 'edit')->name('posts.edit');
-                    Route::post('/edit/{post}', 'update');
-                    Route::get('/delete/{post}', 'destroy')->name('posts.destroy');
-                    Route::get('/admin', 'admin')->name('posts.admin');           
+                Route::get('/create', 'create')->name('posts.create');
+                Route::post('/create', 'store');
+                Route::get('/edit/{post}', 'edit')->name('posts.edit');
+                Route::post('/edit/{post}', 'update');
+                Route::get('/delete/{post}', 'destroy')->name('posts.destroy');
+                Route::get('/admin', 'admin')->name('posts.admin');           
             });
 
+
+            //Category
+            Route::prefix('categories')->group(function () { 
+                Route::controller(CategoryController::class)->group(function () {
+                    Route::get('/', 'index')->name('admin.categories.index');
+                    Route::get('/create', 'create')->name('admin.categories.create');
+                    Route::post('/create', 'store')->name('admin.categories.store');
+                });
+            });
         });
     });
 

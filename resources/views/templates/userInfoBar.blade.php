@@ -41,7 +41,7 @@
     <aside class="float-left w-3/12 border-r border-solid border-sky-500 m-5">
         <div class="text-sky-500 text-xl pb-5 capitalize">
             Hello, 
-                <a class="text-sky-500 font-bold" href=' {{ route('user.index', [Auth::user()->id, 'locale' => app()->getLocale()]) }} '> 
+                <a class="text-sky-500 font-bold" href=' {{ route('user.profile.timeline', [Auth::user()->id, 'locale' => app()->getLocale()]) }} '> 
                     {{ Auth::user()->firstName }} 
                     {{ Auth::user()->lastName }}            
                 </a>
