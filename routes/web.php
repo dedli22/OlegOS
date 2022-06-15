@@ -28,11 +28,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+// Loacale 
 Route::get('/', function() {
     return redirect(app()->getLocale());
 });
-
-
 
 Route::group([
     'prefix' => '{locale}',
@@ -44,6 +44,7 @@ Route::group([
         return view('welcome');
     });
 
+    // test dashbordzzz
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->middleware(['auth'])->name('dashboard');
@@ -54,17 +55,17 @@ Route::group([
 
 
 
-    // Admin page 
-        Route::get('/admin', function () {
-        return view('admin/index');
-    })->middleware(['CheckIsAdmin'])->name('admin.index');
-
     // ALL USERS 
-
     Route::get('/login2', function () {
         return view('login');
     })->name('login2');
 
+        
+
+
+        
+    
+    // AUTH USERS
         //User Profile
         Route::middleware(['auth'])->group(function () {
             Route::prefix('/user')->group(function () {
@@ -94,19 +95,22 @@ Route::group([
                 });
             });
 
-
         });
 
 
-        
-    
-    // AUTH USERS
 
     // MODERATROS
 
+    
     // ADMIN
-    Route::middleware([CheckIsAdmin::class])->group(function () {
+    Route::middleware([CheckIsAdmin::class])->group(function () {        
         Route::prefix('admin')->group(function () {
+            
+            // Admin home page 
+            Route::get('/', function () {
+                return view('admin.index');
+            })->name('admin.index');        
+
             //Posts = News
             Route::controller(postController::class)->group(function () {                       
                 Route::get('/create', 'create')->name('posts.create');
@@ -117,20 +121,52 @@ Route::group([
                 Route::get('/admin', 'admin')->name('posts.admin');           
             });
 
-
             //Category
             Route::prefix('categories')->group(function () { 
                 Route::controller(CategoryController::class)->group(function () {
                     Route::get('/', 'index')->name('admin.categories.index');
                     Route::get('/create', 'create')->name('admin.categories.create');
                     Route::post('/create', 'store')->name('admin.categories.store');
+                    Route::get('/edit/{category}', 'edit')->name('admin.categories.edit');
+                    Route::post('/edit/{category}', 'update')->name('admin.categories.update');
+                    Route::get('/delete/{category}', 'destroy')->name('admin.categories.destroy');
                 });
             });
+
+            // Main Navigation MainNav
+            Route::controller(MainNavController::class)->group(function () {
+                Route::prefix('admin/mainNav')->group(function () {
+                    Route::get('/', 'index')->name('MainNav.index');
+                    Route::get('/create', 'create')->name('MainNav.create');
+                    Route::Post('/create', 'store');
+                    Route::get('/show/{MainNav}', 'show')->name('MainNav.show');
+                    Route::get('/edit/{MainNav}', 'edit')->name('MainNav.edit');
+                    Route::Post('/edit/{MainNav}', 'update');
+                    Route::get('/delete/{MainNav}', 'destroy')->name('MainNav.destroy');
+                });
+            });
+
+            // Config page 
+            Route::controller(PageConfigController::class)->group(function () {
+                Route::prefix('admin/PageConfig')->group(function () {
+                    Route::get('/', 'index')->name('PageConfig.index');
+                    Route::get('/show', 'show')->name('PageConfig.show');
+                    Route::Post('/show', 'update')->name('PageConfig.update');
+                    Route::get('/offline', 'offline')->name('PageConfig.offline');
+                });
+            });
+
         });
     });
 
     // MAIN ADMIN
 
+   
+   
+   
+   
+   
+   
     Route::get('/',  [MainNavController::class, 'index']);
 
 
@@ -170,28 +206,7 @@ Route::group([
     //     return view('admin/index');
     // })->middleware(['CheckIsAdmin']);
 
-    // Main Navigation MainNav
-    Route::controller(MainNavController::class)->group(function () {
-        Route::prefix('admin/mainNav')->group(function () {
-            Route::get('/', 'index')->name('MainNav.index');
-            Route::get('/create', 'create')->name('MainNav.create');
-            Route::Post('/create', 'store');
-            Route::get('/show/{MainNav}', 'show')->name('MainNav.show');
-            Route::get('/edit/{MainNav}', 'edit')->name('MainNav.edit');
-            Route::Post('/edit/{MainNav}', 'update');
-            Route::get('/delete/{MainNav}', 'destroy')->name('MainNav.destroy');
-        });
-    });
 
-    // Config page 
-    Route::controller(PageConfigController::class)->group(function () {
-        Route::prefix('admin/PageConfig')->group(function () {
-            Route::get('/', 'index')->name('PageConfig.index');
-            Route::get('/show', 'show')->name('PageConfig.show');
-            Route::Post('/show', 'update')->name('PageConfig.update');
-            Route::get('/offline', 'offline')->name('PageConfig.offline');
-        });
-    });
 
     // Tests
     Route::get('/welcome', function () {

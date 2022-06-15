@@ -3,7 +3,9 @@
 @section('admin')
 <div id="acpContainer" class="w-full m-5">
     <br><br>
-    <div class="pageTitle text-sky-500 text-xl pl-3 font-bold text-left capitalize">@lang('admin.Title') »</div>
+    <div class="pageTitle text-sky-500 text-xl pl-3 font-bold text-left capitalize">
+        <a href="{{ route('admin.index', app()->getLocale()) }}"> @lang('admin.Title') »</a>
+    </div>
     <hr style="width: 75%; float: left; margin: 5px; height: 2px;" color="#019ad2">
     <br>
     <a href="{{ route('PageConfig.show', app()->getLocale()) }}">   

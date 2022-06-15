@@ -2,12 +2,16 @@
 @section('admin')
 <div>
     <br><br>
-    <div class="pageTitle text-sky-500 text-xl pl-3 font-bold text-left capitalize">@lang('admin.title') » category's » Create category</div>
+    <div class="pageTitle text-sky-500 text-xl pl-3 font-bold text-left capitalize">
+        <a href="{{ route('admin.index', app()->getLocale()) }}"> @lang('admin.Title') </a>»
+        <a href="{{ route('admin.categories.index', app()->getLocale()) }}"> category's </a>»
+        <a href="{{ route('admin.categories.create', app()->getLocale()) }}"> Create </a>           
+    </div>
     <hr style="width: 75%; float: left; margin: 5px; height: 2px;" color="#019ad2">
     <br>         
-    <br><br>
+
     
-    <form action="{{ route('admin.categories.create', app()->getLocale()) }}" method="POST" enctype="multipart/form-data">
+    <form class="m-5" action="{{ route('admin.categories.create', app()->getLocale()) }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <span>
@@ -36,7 +40,7 @@
         </span>
         <span>
             <div class="float-left pt-5 w-1/4 text-gray-600">
-                <font color="red">*</font><b>@lang('admin.NP Create Image')</b>
+                <font color="red">*</font><b>Category image</b>
             </div>
             <div>
                 
