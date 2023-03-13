@@ -22,7 +22,8 @@ class CheckIsAdmin
         }
 
         // ja nav admins tad uz kurieni redirectot
-        return redirect()->route('posts.index');
+        // return redirect()->route('posts.index');
+        return redirect()->route('/');
         
     }
 }

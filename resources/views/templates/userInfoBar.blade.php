@@ -19,7 +19,7 @@
                 <a class="block float-left w-20 text-gray-200 font-bold" href="#">@lang('app.Album')</a>
             </li>
             <li>
-                <a class="block float-left w-20 text-gray-200 font-bold" href="#">@lang('app.Friends')</a>
+                <a class="block float-left w-20 text-gray-200 font-bold" href="{{ route('friends.show', app()->getLocale()) }}">@lang('app.Friends')</a>
             </li>
             <li>
                 <a class="block float-left w-20 text-gray-200 font-bold" href="#">@lang('app.About')</a>
@@ -41,7 +41,7 @@
     <aside class="float-left w-3/12 border-r border-solid border-sky-500 m-5">
         <div class="text-sky-500 text-xl pb-5 capitalize">
             Hello, 
-                <a class="text-sky-500 font-bold" href=' {{ route('user.show', [Auth::user()->id, 'locale' => app()->getLocale()]) }} '> 
+                <a class="text-sky-500 font-bold" href=' {{ route('user.profile.timeline', [Auth::user()->id, 'locale' => app()->getLocale()]) }} '> 
                     {{ Auth::user()->firstName }} 
                     {{ Auth::user()->lastName }}            
                 </a>
@@ -60,22 +60,34 @@
             </div>
             
         </div>
-        <div>
+        <div>       
+            
+            
             <ul class="capitalize">
                 <li class="h-8 block pl-5">
-                    <a class="block text-sky-600 hover:text-sky-900 hover:pl-3" href="{{ route('users.UsersEditMainInfo', [Auth::user()->id, 'locale' => app()->getLocale()]) }}">» Edit profile</a>
+                    <a class="block text-sky-600 hover:text-sky-900 hover:pl-3" @if(request()->routeIs('users.UsersEditMainInfo', 'users.editProfilePicture', 'users.changePassword', app()->getLocale()))style="padding-left:15px" @else '' @endif href="{{ route('users.UsersEditMainInfo', [Auth::user()->id, 'locale' => app()->getLocale()]) }}">
+                        » Edit profile
+                    </a>
                 </li>
                 <li class="h-8 block pl-5">
-                    <a class="block text-sky-600 hover:text-sky-900 hover:pl-3" href="#">» Edit about me</a>
+                    <a class="block text-sky-600 hover:text-sky-900 hover:pl-3" href="#">
+                        » Edit about me
+                    </a>
                 </li>
                 <li class="h-8 block pl-5">
-                    <a class="block text-sky-600 hover:text-sky-900 hover:pl-3" href="#">» Edit album</a>
+                    <a class="block text-sky-600 hover:text-sky-900 hover:pl-3" href="#">
+                        » Edit album
+                    </a>
                 </li>
                 <li class="h-8 block pl-5">
-                    <a class="block text-sky-600 hover:text-sky-900 hover:pl-3" href="#">» Edit </a>
+                    <a class="block text-sky-600 hover:text-sky-900 hover:pl-3" href="#">
+                        » Edit 
+                    </a>
                 </li>
                 <li class="h-8 block pl-5">
-                    <a class="block text-sky-600 hover:text-sky-900 hover:pl-3" href="#">» Edit profile</a>
+                    <a class="block text-sky-600 hover:text-sky-900 hover:pl-3" href="#">
+                        » Edit profile
+                     </a>
                 </li>
             </ul>          
         </div>

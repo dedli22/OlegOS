@@ -8,7 +8,7 @@ use App\Models\PageConfig;
 // use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Contracts\View\View;
-use App\Http\Controllers\PageConfigController;
+
 
 
 class postController extends Controller
